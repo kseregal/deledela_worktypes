@@ -1,0 +1,18 @@
+name: delidela_worktypes
+description: A sample command-line application.
+version: 0.0.1
+#homepage: https://www.example.com
+#author: Sergey.Kablov <email@example.com>
+
+environment:
+  sdk: '>=1.20.1 <2.0.0'
+
+dependencies:
+  http: ^0.11.3+15
+  yaml: "^2.1.13"
+  rethinkdb_driver2: "^2.3.1"
+  elastic_rest_api:
+    git: https://github.com/kseregal/elastic_rest_api.git
+
+dev_dependencies:
+#  test: ^0.12.0
