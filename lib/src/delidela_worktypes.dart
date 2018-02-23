@@ -40,7 +40,7 @@ class ExportRethinkDataToES {
         _rethinkDbPort = rethinkDbPort;
 
   exportWorkType () async {
-    print('export');
+    print('start export');
     //r.db("delidela").table("workTypes");
 
     try {
@@ -59,10 +59,8 @@ class ExportRethinkDataToES {
           host: _rethinkDbHost,
           port: _rethinkDbPort
       );
-
-
-
       List<Map<String, dynamic>> result = await _r.table("workTypes").coerceTo('array').run(_rethinkConn);
+
       result.forEach((workTypeData) async {
         (workTypeData["subtypes"] as List<String>).forEach((String subType) async {
           Map<String, dynamic> workTypesForExport = {
@@ -70,8 +68,8 @@ class ExportRethinkDataToES {
             "workType": workTypeData["type"],
             "subType": subType
           };
-          print(workTypesForExport);
-          await _esApi.elasticRequest.post( "contractors_worktype/doc/", JSON.encode(workTypesForExport) );
+          //print(workTypesForExport);
+          await _esApi.elasticRequest.post( "contractors_worktype1/doc/", JSON.encode(workTypesForExport) );
         });
 
       });
